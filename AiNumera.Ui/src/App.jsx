@@ -121,18 +121,44 @@ function App() {
                       })
                       .join(" ")}
                     fill="none"
-                    stroke="#f01616"
+                    stroke="#16a34a"
+                    strokeWidth="4"
+                  />
+
+                  <polyline
+                    points={lineChart
+                      .map((item, index) => {
+                        const x = 80 + index * 80;
+                        const y = 260 - item.clients * 2;
+                        return `${x},${y}`;
+                      })
+                      .join(" ")}
+                    fill="none"
+                    stroke="#2563eb"
+                    strokeWidth="4"
+                  />
+
+                  <polyline
+                    points={lineChart
+                      .map((item, index) => {
+                        const x = 80 + index * 80;
+                        const y = 260 - item.companies * 2;
+                        return `${x},${y}`;
+                      })
+                      .join(" ")}
+                    fill="none"
+                    stroke="#9333ea"
                     strokeWidth="4"
                   />
                   {/* Blue Line */}
                   <polyline
                     points="80,220 160,180 240,160 320,120 400,140 480,90 560,70"
                     fill="none"
-                    stroke="#2563eb"
+                    stroke="#d6561b"
                     strokeWidth="4"
                   />
 
-                  {/* Green Line */}
+                  {/* 
                   <polyline
                     points="80,240 160,210 240,170 320,150 400,110 480,80 560,60"
                     fill="none"
@@ -140,13 +166,14 @@ function App() {
                     strokeWidth="4"
                   />
 
-                  {/* Purple Line */}
                   <polyline
                     points="80,200 160,190 240,140 320,170 400,120 480,130 560,100"
                     fill="none"
                     stroke="#9333ea"
                     strokeWidth="4"
                   />
+                  */}
+
                 </svg>
               </div>
               
