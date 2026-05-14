@@ -6,6 +6,8 @@ function App() {
   const [historyPanels, setHistoryPanels] = useState([]);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lineChart, setLineChart] = useState([]);
+  const [barChart, setBarChart] = useState([]);
 
   /*
   const historyPanels = [
@@ -30,6 +32,8 @@ function App() {
 
         setHistoryPanels(data.historyPanels);
         setUsers(data.users);
+        setLineChart(data.lineChart);
+        setBarChart(data.barChart);
       } catch (error) {
         console.error(error);
       } finally {
@@ -93,11 +97,11 @@ function App() {
 
                   {/* Y Labels */}
                   <text x="20" y="260">0</text>
-                  <text x="10" y="210">10</text>
-                  <text x="10" y="160">20</text>
-                  <text x="10" y="110">30</text>
-                  <text x="10" y="60">40</text>
-                  <text x="10" y="30">50</text>
+                  <text x="10" y="210">20</text>
+                  <text x="10" y="160">40</text>
+                  <text x="10" y="110">60</text>
+                  <text x="10" y="60">80</text>
+                  <text x="10" y="30">90</text>
 
                   {/* X Labels */}
                   <text x="70" y="290">Seg</text>
@@ -108,6 +112,18 @@ function App() {
                   <text x="470" y="290">Sab</text>
                   <text x="550" y="290">Dom</text>
 
+                  <polyline
+                    points={lineChart
+                      .map((item, index) => {
+                        const x = 80 + index * 80;
+                        const y = 260 - item.users * 2;
+                        return `${x},${y}`;
+                      })
+                      .join(" ")}
+                    fill="none"
+                    stroke="#f01616"
+                    strokeWidth="4"
+                  />
                   {/* Blue Line */}
                   <polyline
                     points="80,220 160,180 240,160 320,120 400,140 480,90 560,70"
@@ -133,29 +149,23 @@ function App() {
                   />
                 </svg>
               </div>
+              
             </div>
 
             <div className="chart-box">
               <h2>Capacidade de Máquina X Equivalência Humana</h2>
 
-              <div className="vertical-bar-chart">
-                <div className="bar-row">
-                  <span>João</span>
-                  <div><strong style={{ width: "55%" }}></strong></div>
+                <div className="vertical-bar-chart">
+                  {barChart.map((item, index) => (
+                    <div className="bar-row" key={index}>
+                      <span>{item.name}</span>
+                      <div>
+                        <strong style={{ width: `${item.value}%` }}></strong>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="bar-row">
-                  <span>Maria</span>
-                  <div><strong style={{ width: "90%" }}></strong></div>
-                </div>
-                <div className="bar-row">
-                  <span>Ana</span>
-                  <div><strong style={{ width: "65%" }}></strong></div>
-                </div>
-                <div className="bar-row">
-                  <span>Simone</span>
-                  <div><strong style={{ width: "80%" }}></strong></div>
-                </div>
-              </div>
+
             </div>
           </div>
         </section>

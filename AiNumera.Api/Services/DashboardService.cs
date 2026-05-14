@@ -71,7 +71,26 @@ namespace AiNumera.Api.Services
                     },
                     new UserDto { Name = "Ana Clara", Status = "Pending", Orders = 28 },
                     new UserDto { Name = "Simone Moura", Status = "Pending", Orders = 12 }
-                ]
+                ],
+
+                LineChart =
+                    [
+                        new LineChartDto { Day = "Seg", Users = 40, Clients = 30, Companies = 20 },
+                        new LineChartDto { Day = "Ter", Users = 55, Clients = 45, Companies = 30 },
+                        new LineChartDto { Day = "Qua", Users = 48, Clients = 60, Companies = 45 },
+                        new LineChartDto { Day = "Qui", Users = 70, Clients = 50, Companies = 60 },
+                        new LineChartDto { Day = "Sex", Users = 65, Clients = 75, Companies = 55 },
+                        new LineChartDto { Day = "Sáb", Users = 80, Clients = 70, Companies = 68 },
+                        new LineChartDto { Day = "Dom", Users = 90, Clients = 85, Companies = 72 }
+                    ],
+
+                BarChart =
+                    [
+                        new BarChartDto { Name = "João", Value = 45 },
+                        new BarChartDto { Name = "Maria", Value = 70 },
+                        new BarChartDto { Name = "Ana", Value = 55 },
+                        new BarChartDto { Name = "Simone", Value = 90 }
+                    ]
             };
         }
     }
