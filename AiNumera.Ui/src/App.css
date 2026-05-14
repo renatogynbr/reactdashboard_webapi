@@ -87,8 +87,9 @@ body {
 }
 .dashboard-content {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 220px 1fr;
   gap: 20px;
+  align-items: start;
 }
 
 .user-details {
@@ -100,7 +101,7 @@ body {
 .user-card,
 .chart-box {
   background: white;
-  padding: 16px;
+  padding: 12px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
@@ -121,13 +122,20 @@ body {
 }
 
 .line-chart {
-  height: 240px;
+  width: 100%;
+  height: 360px;
   margin-top: 20px;
 }
 
 .line-chart svg {
   width: 100%;
   height: 100%;
+  display: block;
+}
+
+.line-chart text {
+  fill: #4b5563;
+  font-size: 12px;
 }
 
 .vertical-bar-chart {

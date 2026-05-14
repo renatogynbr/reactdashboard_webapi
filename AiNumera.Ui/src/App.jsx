@@ -11,10 +11,12 @@ function App() {
 ];
 
   const users = [
-    { name: "John Smith", status: "Active", orders: 24 },
+    { name: "João Almeida", status: "Active", orders: 24 },
     { name: "Maria Silva", status: "Active", orders: 18 },
-    { name: "Alex Brown", status: "Inactive", orders: 7 },
+    { name: "Alex Brito", status: "Inactive", orders: 7 },
     { name: "Ana Costa", status: "Pending", orders: 12 },
+    { name: "Cleber", status: "Pending", orders: 12 },
+    { name: "Igor", status: "Pending", orders: 12 },
   ];
 
   return (
@@ -56,39 +58,58 @@ function App() {
           </div>
 
           <div className="charts">
-            <div className="chart-box">
-              <h3>Distribuição diária de uso por usuário</h3>
+<div className="chart-box">
+  <h2>Distribuição diária de uso por Usuários</h2>
 
-              <div className="line-chart">
-                <svg viewBox="0 0 500 220">
-                  <polyline
-                    points="20,170 100,130 180,150 260,90 340,110 460,50"
-                    fill="none"
-                    stroke="#2563eb"
-                    strokeWidth="4"
-                  />
-                  <polyline
-                    points="20,150 100,100 180,120 260,70 340,85 460,30"
-                    fill="none"
-                    stroke="#16a34a"
-                    strokeWidth="4"
-                  />
-                  <polyline
-                    points="20,190 100,160 180,130 260,140 340,100 460,80"
-                    fill="none"
-                    stroke="#f97316"
-                    strokeWidth="4"
-                  />
-                  <polyline
-                    points="20,120 100,140 180,90 260,110 340,60 460,100"
-                    fill="none"
-                    stroke="#9333ea"
-                    strokeWidth="4"
-                  />
-                </svg>
-              </div>
-            </div>
+  <div className="line-chart">
+    <svg viewBox="0 0 700 320">
+      {/* Y Axis */}
+      <line x1="60" y1="20" x2="60" y2="260" stroke="#9ca3af" />
+      <line x1="60" y1="260" x2="650" y2="260" stroke="#9ca3af" />
 
+      {/* Y Labels */}
+      <text x="20" y="260">0</text>
+      <text x="10" y="210">10</text>
+      <text x="10" y="160">20</text>
+      <text x="10" y="110">30</text>
+      <text x="10" y="60">40</text>
+      <text x="10" y="30">50</text>
+
+      {/* X Labels */}
+      <text x="70" y="290">Seg</text>
+      <text x="150" y="290">Ter</text>
+      <text x="230" y="290">Qua</text>
+      <text x="310" y="290">Qui</text>
+      <text x="390" y="290">Sex</text>
+      <text x="470" y="290">Sab</text>
+      <text x="550" y="290">Dom</text>
+
+      {/* Blue Line */}
+      <polyline
+        points="80,220 160,180 240,160 320,120 400,140 480,90 560,70"
+        fill="none"
+        stroke="#2563eb"
+        strokeWidth="4"
+      />
+
+      {/* Green Line */}
+      <polyline
+        points="80,240 160,210 240,170 320,150 400,110 480,80 560,60"
+        fill="none"
+        stroke="#16a34a"
+        strokeWidth="4"
+      />
+
+      {/* Purple Line */}
+      <polyline
+        points="80,200 160,190 240,140 320,170 400,120 480,130 560,100"
+        fill="none"
+        stroke="#9333ea"
+        strokeWidth="4"
+      />
+    </svg>
+  </div>
+</div>
             <div className="chart-box">
               <h2>Capacidade de Máquina X Equivalência Humana</h2>
 
@@ -102,7 +123,7 @@ function App() {
                   <div><strong style={{ width: "70%" }}></strong></div>
                 </div>
                 <div className="bar-row">
-                  <span>Renato</span>
+                  <span>João</span>
                   <div><strong style={{ width: "55%" }}></strong></div>
                 </div>
                 <div className="bar-row">
