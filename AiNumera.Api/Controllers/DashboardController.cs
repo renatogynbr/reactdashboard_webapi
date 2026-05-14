@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AiNumera.Api.Interfaces;
+using AiNumera.Api.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AiNumera.Api.Controllers
@@ -7,10 +9,18 @@ namespace AiNumera.Api.Controllers
     [ApiController]
     public class DashboardController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        private readonly IDashboardService _dashboardService;
+
+        public DashboardController(IDashboardService dashboardService)
         {
-            return Ok(new { Message = "Dashboard data goes here." });
-        }   
+            _dashboardService = dashboardService;
+        }
+
+        [HttpGet]
+        public IActionResult GetDashboard()
+        {
+            var result = _dashboardService.GetDashboard();
+            return Ok(result);
+        }
     }
 }

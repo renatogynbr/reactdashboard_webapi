@@ -1,3 +1,6 @@
+using AiNumera.Api.Interfaces;
+using AiNumera.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +10,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IDashboardService, DashboardService>(); 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllPolicy", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors("AllPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

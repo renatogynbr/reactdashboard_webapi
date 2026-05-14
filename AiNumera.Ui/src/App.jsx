@@ -1,6 +1,13 @@
+import { useEffect, useState } from "react";
+import { getDashboardData } from "./services/dashboardService";
 import "./App.css";
 
 function App() {
+  const [historyPanels, setHistoryPanels] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  /*
   const historyPanels = [
   { title: "Tempo Total Ativo", value: "65h 55min", footer:"Tempo total no Período", className: "panel-yellow" },
   { title: "Média por Usuário", value: "16h 29min", footer:"Média no Período", className: "panel-green" },
@@ -8,16 +15,33 @@ function App() {
   { title: "Usuários Ativos", value: "3/4", footer:"Usuários com Login", className: "panel-blue2" },
   { title: "Tempo Máquina", value: "28h 25min", footer:"Processamento Automático", className: "panel-purple" },
   { title: "Total Economizado", value: "R$ 91.648,00", footer:"Economia Mensal Estimada", className: "panel-green2" },
-];
+  ];
 
   const users = [
-    { name: "João Almeida", status: "Active", orders: 24 },
+    { name: "João Batista", status: "Active", orders: 24 },
     { name: "Maria Silva", status: "Active", orders: 18 },
-    { name: "Alex Brito", status: "Inactive", orders: 7 },
-    { name: "Ana Costa", status: "Pending", orders: 12 },
-    { name: "Cleber", status: "Pending", orders: 12 },
-    { name: "Igor", status: "Pending", orders: 12 },
   ];
+  */
+
+  useEffect(() => {
+  async function loadDashboard() {
+      try {
+        const data = await getDashboardData();
+
+        setHistoryPanels(data.historyPanels);
+        setUsers(data.users);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+  loadDashboard();    }, []);
+
+  if (loading) {
+    return <p>Loading dashboard...</p>;
+  }
 
   return (
     <div className="app">
@@ -58,70 +82,63 @@ function App() {
           </div>
 
           <div className="charts">
-<div className="chart-box">
-  <h2>Distribuição diária de uso por Usuários</h2>
+            <div className="chart-box">
+              <h2>Distribuição diária de uso por Usuários</h2>
 
-  <div className="line-chart">
-    <svg viewBox="0 0 700 320">
-      {/* Y Axis */}
-      <line x1="60" y1="20" x2="60" y2="260" stroke="#9ca3af" />
-      <line x1="60" y1="260" x2="650" y2="260" stroke="#9ca3af" />
+              <div className="line-chart">
+                <svg viewBox="0 0 700 320">
+                  {/* Y Axis */}
+                  <line x1="60" y1="20" x2="60" y2="260" stroke="#9ca3af" />
+                  <line x1="60" y1="260" x2="650" y2="260" stroke="#9ca3af" />
 
-      {/* Y Labels */}
-      <text x="20" y="260">0</text>
-      <text x="10" y="210">10</text>
-      <text x="10" y="160">20</text>
-      <text x="10" y="110">30</text>
-      <text x="10" y="60">40</text>
-      <text x="10" y="30">50</text>
+                  {/* Y Labels */}
+                  <text x="20" y="260">0</text>
+                  <text x="10" y="210">10</text>
+                  <text x="10" y="160">20</text>
+                  <text x="10" y="110">30</text>
+                  <text x="10" y="60">40</text>
+                  <text x="10" y="30">50</text>
 
-      {/* X Labels */}
-      <text x="70" y="290">Seg</text>
-      <text x="150" y="290">Ter</text>
-      <text x="230" y="290">Qua</text>
-      <text x="310" y="290">Qui</text>
-      <text x="390" y="290">Sex</text>
-      <text x="470" y="290">Sab</text>
-      <text x="550" y="290">Dom</text>
+                  {/* X Labels */}
+                  <text x="70" y="290">Seg</text>
+                  <text x="150" y="290">Ter</text>
+                  <text x="230" y="290">Qua</text>
+                  <text x="310" y="290">Qui</text>
+                  <text x="390" y="290">Sex</text>
+                  <text x="470" y="290">Sab</text>
+                  <text x="550" y="290">Dom</text>
 
-      {/* Blue Line */}
-      <polyline
-        points="80,220 160,180 240,160 320,120 400,140 480,90 560,70"
-        fill="none"
-        stroke="#2563eb"
-        strokeWidth="4"
-      />
+                  {/* Blue Line */}
+                  <polyline
+                    points="80,220 160,180 240,160 320,120 400,140 480,90 560,70"
+                    fill="none"
+                    stroke="#2563eb"
+                    strokeWidth="4"
+                  />
 
-      {/* Green Line */}
-      <polyline
-        points="80,240 160,210 240,170 320,150 400,110 480,80 560,60"
-        fill="none"
-        stroke="#16a34a"
-        strokeWidth="4"
-      />
+                  {/* Green Line */}
+                  <polyline
+                    points="80,240 160,210 240,170 320,150 400,110 480,80 560,60"
+                    fill="none"
+                    stroke="#16a34a"
+                    strokeWidth="4"
+                  />
 
-      {/* Purple Line */}
-      <polyline
-        points="80,200 160,190 240,140 320,170 400,120 480,130 560,100"
-        fill="none"
-        stroke="#9333ea"
-        strokeWidth="4"
-      />
-    </svg>
-  </div>
-</div>
+                  {/* Purple Line */}
+                  <polyline
+                    points="80,200 160,190 240,140 320,170 400,120 480,130 560,100"
+                    fill="none"
+                    stroke="#9333ea"
+                    strokeWidth="4"
+                  />
+                </svg>
+              </div>
+            </div>
+
             <div className="chart-box">
               <h2>Capacidade de Máquina X Equivalência Humana</h2>
 
               <div className="vertical-bar-chart">
-                <div className="bar-row">
-                  <span>Cleber</span>
-                  <div><strong style={{ width: "45%" }}></strong></div>
-                </div>
-                <div className="bar-row">
-                  <span>Igor</span>
-                  <div><strong style={{ width: "70%" }}></strong></div>
-                </div>
                 <div className="bar-row">
                   <span>João</span>
                   <div><strong style={{ width: "55%" }}></strong></div>
@@ -135,7 +152,7 @@ function App() {
                   <div><strong style={{ width: "65%" }}></strong></div>
                 </div>
                 <div className="bar-row">
-                  <span>Alex</span>
+                  <span>Simone</span>
                   <div><strong style={{ width: "80%" }}></strong></div>
                 </div>
               </div>
